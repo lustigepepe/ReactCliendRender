@@ -1,0 +1,85 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+}
+
+ol,
+ul {
+    padding-left: 30px;
+}
+.App-KeyBoard {
+    padding-top: 5%;
+    padding-left: 20%;
+    padding-right: 10%;
+    position: static;
+
+}
+label {
+    /* align-self: auto; */
+}
+input {
+    width: 100%;
+}
+
+table {
+    padding-top: 2em;
+    width: 22em;
+}
+
+.songNumber {
+    width: 3em;
+}
+.keyBoardGrid {
+    width: 30em;
+    float: left;
+    margin-top: 2em;
+}
+.App-KeyBoard > form {
+    width: 40em;
+    float: right;
+    margin: 2em 0 0;
+}
+.square {
+    height: 17em;
+    width: 4em;
+    float: left;
+    border-left: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    border-radius: 0 0 5px 5px;
+    box-shadow: -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 5px #ccc inset, 0 0 3px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(top, #eee 0%, #fff 100%);
+    transition-duration: 2s;
+}
+
+.thinSquare {
+    position: absolute;
+    z-index: 2;
+    height: 9em;
+    width: 2em;
+    float: left;
+    margin: 0 0 0 -1em;
+    border: 1px solid #000;
+    border-radius: 0 0 3px 3px;
+    box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(45deg, #222 0%, #555 100%);
+    transition-duration: 2s;
+}
+.square:active {
+    background: linear-gradient(45deg, #dc143c 0%, #8b0000 100%);
+}
+.thinSquare:active {
+    background: linear-gradient(45deg, #dc143c 0%, #8b0000 100%);
+}
+
+.adjustSquare {
+    margin: 0 0 0 -1em;
+}
+.square:focus {
+    outline: none;
+}
+.thinSquare:focus {
+    outline: none;
+}
+.kbd-navigation .square:focus {
+    background: #ddd;
+}
