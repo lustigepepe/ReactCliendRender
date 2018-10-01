@@ -1,0 +1,20 @@
+{
+  "name": "react-piano-apollo-server",
+  "version": "1.0.0",
+  "description": "Apollo server for the react piano",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon apolloServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.0.8",
+    "apollo-server-express": "^2.0.7",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "nodemon": "^1.18.4",
+    "readdir": "^0.1.0"
+  }
+}

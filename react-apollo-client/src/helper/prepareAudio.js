@@ -1,4 +1,3 @@
-
 function loadSounds(octave = 1) {
     if (octave < 1)
       return null;
@@ -81,7 +80,6 @@ function loadSounds(octave = 1) {
       return null;
     for (let i in audioList) {
        audioList[i] = new Audio(audioList[i]);
-      console.log("Thats's it :" + audioList.length);
     }
     return audioList;
   }
@@ -93,6 +91,4 @@ function loadSounds(octave = 1) {
     });
     return fileMap;
   }
-
-  
 export default createAudioList;

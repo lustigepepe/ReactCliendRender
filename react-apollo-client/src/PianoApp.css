@@ -1,5 +1,5 @@
 body {
-    font: 14px "Century Gothic", Futura, sans-serif;
+    font: 15px "Century Gothic", Futura, sans-serif;
     margin: 20px;
 }
 
@@ -17,13 +17,27 @@ ul {
 label {
     /* align-self: auto; */
 }
+.dropDown {
+    width: 100%;
+    font-size: 2em;
+}
 input {
     width: 100%;
+    font-size: 14px;
+}
+button {
+    font-size: 12px;
+
 }
 
 table {
     padding-top: 2em;
     width: 22em;
+}
+
+.emptyRow {
+    height: 2em;
+
 }
 
 .songNumber {
@@ -49,6 +63,8 @@ table {
     box-shadow: -1px 0 0 rgba(255, 255, 255, 0.8) inset, 0 0 5px #ccc inset, 0 0 3px rgba(0, 0, 0, 0.2);
     background: linear-gradient(top, #eee 0%, #fff 100%);
     transition-duration: 2s;
+    font-size: 14px;
+
 }
 
 .thinSquare {
@@ -63,6 +79,8 @@ table {
     box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset, 0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
     background: linear-gradient(45deg, #222 0%, #555 100%);
     transition-duration: 2s;
+    font-size: 14px;
+
 }
 .square:active {
     background: linear-gradient(45deg, #dc143c 0%, #8b0000 100%);
