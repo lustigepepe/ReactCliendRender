@@ -1,4 +1,5 @@
 const {ApolloServer, gql} = require('apollo-server');
+const { find, filter } = require('lodash');
 
 const songs = [
     {
@@ -18,6 +19,15 @@ const song =
         title: 'What\'a thing man',
         keysPlayed: ['C', 'D', 'E']
     };
+
+// example data
+const authors = [
+    { id: 1, firstName: 'Tom', lastName: 'Coleman' },
+    { id: 2, firstName: 'Sashko', lastName: 'Stubailo' },
+    { id: 3, firstName: 'Mikhail', lastName: 'Novikov' },
+  ];
+
+
 const typeDefs = gql `
     type Song {
         id: ID!
@@ -25,10 +35,19 @@ const typeDefs = gql `
         keysPlayed: [String]
     }
 
+    type Author {
+        id: Int!
+        firstName: String
+        lastName: String
+      }
+
     type Query {
       songs: [Song]
-      say:String!
-      song: Song
+      say: String
+      songById(id: Int!): Song
+      author(id: Int!): Author
+
+
     }
 
     type Mutation {
@@ -39,8 +58,14 @@ const typeDefs = gql `
 const resolvers = {
     Query: {
       songs: () => songs,
-      say:()=>'Can you hear me! :: Can you hear me!',
-      song:()=>song
+      say:() =>'Can you hear me! :: Can you hear me!',
+    //   songByTitle: (title_) => { 
+    //       songs.find((song) => {
+    //           song.title === title_
+    //         })
+    //     }
+        songById: (_, { id }) => find(songs, {id} ),
+        author: (_, { id }) => find(authors, {id} ),
     },
     Mutation: {
         addSong: (_, {title, keysPlayed}) => {

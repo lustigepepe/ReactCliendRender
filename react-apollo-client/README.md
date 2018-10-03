@@ -1,5 +1,6 @@
 Go to folder apollo-server
 
+I'm still working on it...
 #run 
 /yarn install
 /yarn start

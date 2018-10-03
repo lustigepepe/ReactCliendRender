@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import createAudioList from './helper/prepareAudio.js';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import {SongList} from './graphql/querys.js';
+import {SongList, SongPlayer } from './graphql/querys.js';
+import { withApollo } from 'react-apollo';
 import './pianoApp.css';
 
 
@@ -46,32 +47,18 @@ class KeyBoard extends React.Component {
     );
   }
 }
-const typeDefs = gql `
-    type Song {
-        id: ID!
-        title: String
-        keysPlayed: [String]
-    }
-
-    type Query {
-      songs: [Song]
-      say:String!
-    }`
-
 
 class PianoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       squares: Array(12).fill(null),
-      newSongName: null,
-      recordOn: true,
-      dbSongNumber: null,
-      playSongWithID: 0
+      chosenTitle: null,
+      keysPlayed: null,
+      chosenTitle: null
     };
 
     this.audioListKeys = createAudioList();
-
   }
   setNewSongName(event) {
     console.log("newSongName !:: " +this.state.newSongName);
@@ -82,7 +69,14 @@ class PianoApp extends React.Component {
   handleKeyClick(i) {
     this.audioListKeys[--i].play();
   }
-  
+  playSongClick(event) {
+    let data = event.target.value;
+    console.log('playSongClick');
+    console.log(data);
+    // this.audioListKeys[--i].play();
+  }
+
+
   recordClick() {
     console.log("Toggle !:: " +this.state.recordOn);
     this.setState(prevState => ({
@@ -90,11 +84,10 @@ class PianoApp extends React.Component {
     }));
   }
 
-  getDBSong() {
-    // this.setState({songName: event.target.value});
-    // this.setState(prevState => ({
-    //   recordOn: !prevState.recordOn
-    // }));
+  chosenSong(event) {
+    this.setState({chosenTitle: event.target.value});
+    console.log('chosenSong@§$%!!');    
+    console.log(event.target.value);
 
   }
 
@@ -130,22 +123,25 @@ class PianoApp extends React.Component {
               <tr>
                 <label>
                   Choose a song name to save:
-                  <input value={this.state.newSongName} onChange={(e)=>this.setNewSongName(e)} />
+                  <input onChange={(e)=>this.setNewSongName(e)} />
                 </label>
               </tr>
               <tr className="emptyRow"></tr>
               <tr>
                 <label>
                   Play the song with number:               
-                  <input className="songNumber" value={this.state.dbSongNumber} onChange={(e)=>this.getDBSong(e)} />
+                  <input className="songNumber" value={this.state.dbSongNumber} onChange={(e)=>this.chosenSong(e)} />
                 </label>
               </tr>
               <tr>
                 <label>
-                  Play a Song from the dropdown list: 
+                  Play a song from the dropdown list: 
                   {/* <ul>{songList}</ul> */}
-                  <SongList/>
+                  <SongList onChange={(e)=>this.chosenSong(e)}/>
                 </label>
+              </tr>
+              <tr>
+                <SongPlayer title={this.state.chosenTitle} onClick={e=>this.chosenSong(e)}/>
               </tr>
               </table>
             </div>
