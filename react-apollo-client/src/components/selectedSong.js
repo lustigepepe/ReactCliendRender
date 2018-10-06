@@ -8,16 +8,16 @@ const ADD_SONG = gql `
       id
     }
   }
-`;
-
-{/* <Mutation mutation={ADD_SONG} variables={{ id, title, keysPlayed }}> */}
-// {addSong => (
+  `;
+  
 const SelectedSong = ({ id, title, keysPlayed }) => (
+  <Mutation mutation={ ADD_SONG } variables={{ title, keysPlayed }}>
+    { addSong => (
       <option>
         {title}
       </option>
+    )}
+  </Mutation>
 );
-// )}
-//   </Mutation>
 
 export default SelectedSong;

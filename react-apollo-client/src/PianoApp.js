@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import createAudioList from './helper/prepareAudio.js';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import {SongList, SongPlayer } from './graphql/querys.js';
+import SongQuery from './components/songQuery';
+import SongPlayer from './components/songPlayer';
+// import {SongList, SongPlayer } from './graphql/querys.js';
 import { withApollo } from 'react-apollo';
 import './pianoApp.css';
 
@@ -137,7 +139,7 @@ class PianoApp extends React.Component {
                 <label>
                   Play a song from the dropdown list: 
                   {/* <ul>{songList}</ul> */}
-                  <SongList onChange={(e)=>this.chosenSong(e)}/>
+                  <SongQuery onChange={(e)=>this.chosenSong(e)}/>
                 </label>
               </tr>
               <tr>
