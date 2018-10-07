@@ -44,6 +44,8 @@ const resolvers = {
           const data = {
             songs: previous.songs.concat([newSong]),
           };
+          // console.log('Now within localcacheFunction')
+          // console.log(data)
           cache.writeData({ data });
           return newSong;
         },

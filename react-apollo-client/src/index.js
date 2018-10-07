@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
 import PianoApp from './pianoApp';
 import registerServiceWorker from './registerServiceWorker';
-import  {typeDefs, resolvers} from './localCache/localQReMutation.js';
+import  {typeDefs, resolvers} from './localCache/localQReMutation';
+import {SONG_Query} from './components/songQuery';
 
 // import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider, Query } from 'react-apollo';
@@ -67,9 +68,10 @@ const client = new ApolloClient({
 // );
 
 //Start
+
 // const newSong = {
 //   id: 0,
-//   title: 'FirstSong',
+//   title: 'Test',
 //   keysPlayed: ['A'],
 //   __typename: 'SongItem'
 // };
@@ -79,20 +81,26 @@ const client = new ApolloClient({
 // client.writeData({ data });
 
 
-// const query = gql`
-// query {
-//   songs @client {
-//     id
-//     title
-//     keysPlayed
-//   }
+const query = gql`
+query {
+  songs @client {
+    id
+    title
+    keysPlayed
+  }
+}
+`;
+
+// const id = `SongItem:0`;
+// let i = 0;
+// console.log('IntCOunt!!!:: '+ i);
+// if(i > 1) {
+
+//   const backData = client.readFragment({ query, id});
+//   console.log(backData);
 // }
-// `;
-
-
-// const backData = client.readQuery({ query });
-// console.log(backData);
-//End
+// i++; 
+// End
 
 // const App = () => (
 //   <div>

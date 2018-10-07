@@ -13,7 +13,7 @@ import '../pianoApp.css';
 
 export const SONG_Query = gql`
   {
-    songs {
+    songs{
       id,
       title,
       keysPlayed
@@ -27,19 +27,18 @@ const SongList = (props) => (
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       return (
-        <select className="dropDown" name="song" onChange={props.onChange}>
-          {
-            data.songs.map(song => (
-              <SelectedSong key={song.id} {...song}/> 
-          ))}
-        </select>
+         <SelectedSong {...data} />
       );
     }}
   </Query>
 );
+{/* <select className="dropDown" name="song" onChange={props.onChange}>
+  {
+    data.songs.map(song => (
+      <option key={song.id}  value={song.title}> 
+        {song.title}
+      </option>
+  ))}
+</select> */}
 
-              // <option key={song.id} value={song.title}>
-              //   {song.id}
-              // </option>
 export default SongList;
-// export {SONG_Query};
