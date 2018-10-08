@@ -9,15 +9,22 @@ const typeDefs = gql `
         keysPlayed: [String]
     }
 
+    type sSong {
+      id: String
+      title: String
+      keysPlayed: [String]
+  }
+
     type Query {
       songs: [Song]
       say: String
       songById(id: Int!): Song
-      song: Song
+      selectedSong: sSong
     }
 
     type Mutation {
-        addSong(title: String, keysPlayed: [String]): Song
+        addSong(title: String, keysPlayed: [String]): Song,
+        playSong(title: String, keysPlayed: [String]):sSong
     }
     `
 ;
@@ -25,6 +32,8 @@ const typeDefs = gql `
 const resolvers = {
     Mutation: {
         addSong: (_, {title, keysPlayed}, { cache }) => {
+          console.log(cache)
+
             const query = gql`
             query GetSongs {
               songs @client {
@@ -36,19 +45,67 @@ const resolvers = {
           `;
           const previous = cache.readQuery({ query });
           const newSong = {
-            id: Id++,
+            id: Id,
             title,
             keysPlayed,
-            __typename: 'SongItem'
+            __typename: 'Song'
           };
+          // previous.songs = [];
           const data = {
             songs: previous.songs.concat([newSong]),
           };
-          // console.log('Now within localcacheFunction')
-          // console.log(data)
           cache.writeData({ data });
           return newSong;
         },
+        playSong: (_, {title, keysPlayed}, { cache }) => {
+          const playSong = {
+            id: 'Active',
+            title,
+            keysPlayed,
+            __typename: 'sSong'
+          };
+          // console.log("cache")
+          // previous.songs = [];
+          const data = {
+            selectedSong: playSong
+          };
+          cache.writeData({ data });
+          console.log(data);
+          return playSong;
+        }
+        
+        
+        // selectedSong: (_, { iD }, { cache }) => {
+          
+        // selectedSong: (_, variables, { cache }) => {
+        //   // const id = `SongItem:${iD}`;
+        //   const id = `Song:${variables.id}`;
+        //   console.log(id);
+        //   const query = gql`
+        //   query GetSongs {
+        //     songs @client {
+        //       id
+        //       title
+        //       keysPlayed
+        //       selected
+        //     }
+        //   }`;
+
+        //   const previous = cache.readQuery({ query });
+        //   console.log(previous);
+        //     const fragment = gql`
+        //       fragment completeTodo on SongItem {
+        //         selected
+        //         id
+        //       }
+        //     `;
+        //   const fragCache = cache.readFragment({ fragment, id });
+        //   const data = { ...fragCache, selected: !fragCache.selected };
+        //   console.log(data);
+        //   cache.writeData({ id, data });
+
+        //   return null;
+        // }
     }
 }
 

@@ -29,46 +29,61 @@ const cache = new InMemoryCache({
   // }
 });
 
-
 const httpLink = new HttpLink({
   uri: "http://localhost:4000/graphql"
 });
+// const httpLink = new HttpLink({
+//   uri: "https://w5xlvm3vzz.lp.gql.zone/graphql"
+// });
 
 const stateLink = withClientState({ resolvers, typeDefs, cache});
-
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'network-only',
+    errorPolicy: 'ignore'
+  },
+  query: {
+    fetchPolicy: 'cache-and-network',
+    errorPolicy: 'ignore'
+  },
+  mutate: {
+    errorPolicy: 'all'
+  }
+}
 const client = new ApolloClient({
   cache,
-  link: ApolloLink.from([stateLink, httpLink])
+  link: ApolloLink.from([stateLink, httpLink]),
   // link:  httpLink
+  defaultOptions: defaultOptions
 });
 
 
-// const ExchangeRates = () => (
-//   <Query
-//     query={gql`
-//       {
-//         rates(currency: "USD") {
-//           currency
-//           rate
-//         }
-//       }
-//     `}
-//   >
-//     {({ loading, error, data }) => {
-//       if (loading) return <p>Loading...</p>;
-//       if (error) return <p>Error :(</p>;
+const ExchangeRates = () => (
+  <Query
+    query={gql`
+      {
+        rates(currency: "USD") {
+          currency
+          rate
+        }
+      }
+    `}
+  >
+    {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error :(</p>;
 
-//       return data.rates.map(({ currency, rate }) => (
-//         <div key={currency}>
-//           <p>{`${currency}: ${rate}`}</p>
-//         </div>
-//       ));
-//     }}
-//   </Query>
-// );
+      return data.rates.map(({ currency, rate }) => (
+        <div key={currency}>
+          <p>{`${currency}: ${rate}`}</p>
+        </div>
+      ));
+    }}
+  </Query>
+);
 
 //Start
-
+// console.log(cache);
 // const newSong = {
 //   id: 0,
 //   title: 'Test',
@@ -79,6 +94,19 @@ const client = new ApolloClient({
 //   songs: [newSong]
 // };
 // client.writeData({ data });
+// console.log(cache);
+
+// const newSong2 = {
+//   id: 2,
+//   title: 'BBBBBB',
+//   keysPlayed: ['A'],
+//   __typename: 'SongIt'
+// };
+// const data2 = {
+//   songs: [newSong2]
+// };
+// client.writeData({ data2 });
+
 
 
 const query = gql`
@@ -91,13 +119,23 @@ query {
 }
 `;
 
-// const id = `SongItem:0`;
+const id = `SongItem:0`;
 // let i = 0;
 // console.log('IntCOunt!!!:: '+ i);
 // if(i > 1) {
 
-//   const backData = client.readFragment({ query, id});
-//   console.log(backData);
+  const fragment = gql`
+  fragment titleSong on SongItem {
+    title
+    id
+  }
+`;
+// console.log(cache);
+// const backData = client.readFragment({ fragment, id});
+// console.log(backData); 
+
+// const backData2 = client.readQuery({query});
+// console.log(backData2);
 // }
 // i++; 
 // End
@@ -113,8 +151,8 @@ query {
 
 // ReactDOM.render(
 //   <ApolloProvider client={client}>
-//     <App/>
-//     {/* <ExchangeRates/> */}
+//     {/* <App/> */}
+//     <ExchangeRates/>
 //   </ApolloProvider>,
 //   document.getElementById('root'),
 // );
