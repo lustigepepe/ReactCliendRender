@@ -6,13 +6,13 @@ const typeDefs = gql `
     type Song {
         id: ID!
         title: String
-        keysPlayed: [String]
+        keysPlayed: [Int]
     }
 
     type sSong {
       id: String
       title: String
-      keysPlayed: [String]
+      keysPlayed: [Int]
   }
 
     type Query {
@@ -23,8 +23,8 @@ const typeDefs = gql `
     }
 
     type Mutation {
-        addSong(title: String, keysPlayed: [String]): Song,
-        playSong(title: String, keysPlayed: [String]):sSong
+        addSong(title: String, keysPlayed: [Int]): Song,
+        playSong(title: String, keysPlayed: [Int]):sSong
     }
     `
 ;
@@ -70,7 +70,6 @@ const resolvers = {
             selectedSong: playSong
           };
           cache.writeData({ data });
-          console.log(data);
           return playSong;
         }
         

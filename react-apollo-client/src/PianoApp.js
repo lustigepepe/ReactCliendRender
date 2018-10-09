@@ -63,7 +63,7 @@ class PianoApp extends React.Component {
     this.audioListKeys = createAudioList();
   }
   setNewSongName(event) {
-    console.log("newSongName !:: " +this.state.newSongName);
+    console.log("newSongName !:: " + this.state.newSongName);
     this.setState({newSongName: event.target.value});
   }
 
@@ -137,7 +137,7 @@ class PianoApp extends React.Component {
                 </label>
               </tr>
               <tr>
-                <SongPlayer onClick={e=>this.chosenSong(e)}/>
+                <SongPlayer {...this.audioListKeys}/>
               </tr>
               </table>
             </div>

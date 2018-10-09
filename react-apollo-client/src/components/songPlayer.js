@@ -13,29 +13,48 @@ const PLAY_QUERY = gql`
   }
 `;
 
-const SongPlayer = (props) => (
+const SongPlayer = (audio) => (
   <Query query={PLAY_QUERY} >
     {({ loading, error, data }) => {
-      console.log(data);
+      console.log(data.selectedSong);
       if (loading) return null;
       if (error) return `Error!: ${error}`;
-      if(typeof data.selectedSong === "object") {
-        console.log("data.selectedSong");
-
+      let noData = true;
+      if(typeof data.selectedSong !== "object")
+          noData = false;
       
-
-      }
-        {/* <img src={data.dog.displayImage} style={{ height: 100, width: 100 }} /> */}
+      // main player function set with play button
+      let playIn;
+      //
       return (
         <table className='playerTable'>
           <tr>
             <td>
-              <button className='player' onClick={(e)=>this.recordClick(e)}>
+              <button className='player' onClick={(e)=>{
+                if (!noData) {
+                  alert("You have to select a song before");
+                  return;
+                }
+                var i = 1;
+                audio[data.selectedSong.keysPlayed[0]].play();
+                function play () {
+                  audio[data.selectedSong.keysPlayed[i]].play();
+                  i++;
+                  if(! (i < data.selectedSong.keysPlayed.length)) {
+                    clearInterval(playIn);
+                  }
+                }
+                playIn = setInterval(play, 1000);
+              }}>
                 PLAY
               </button>
             </td>
             <td>
-              <button className='buttonStop' onClick={(e)=>this.recordClick(e)}>
+              <button className='buttonStop' onClick={(e)=>{
+                if (!noData) 
+                  return;
+                  clearInterval(playIn);
+              }}>
                 STOP
               </button>
             </td>
