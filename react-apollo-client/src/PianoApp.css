@@ -18,9 +18,25 @@ label {
     /* align-self: auto; */
 }
 .dropDown {
-    width: 100%;
+    width: 102%;
     font-size: 17px;
 }
+.buttonStop {
+    margin-left: 2em 
+}
+
+.player, .buttonStop {
+    color: #6699ff;
+    font-weight: bold;
+    width: 4em;
+    height: 4em;
+}
+
+.playerTable {
+    margin-top: -20px;
+    display:grid;
+}
+
 input {
     width: 100%;
     font-size: 14px;

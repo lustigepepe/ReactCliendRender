@@ -11,12 +11,12 @@ import { getMainDefinition } from 'apollo-utilities';
 import { Mutation } from "react-apollo";
 import '../pianoApp.css';
 
-export const SONG_Query = gql`
+const SONG_Query = gql`
   {
     songs{
       id,
       title,
-      keysPlayed,
+      keysPlayed
     }
   }
 `;
@@ -24,7 +24,6 @@ export const SONG_Query = gql`
 const SongList = (props) => (
   <Query query={SONG_Query}>
     {({ loading, error, data }) => {
-      console.log("SONG_Query");
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       return (

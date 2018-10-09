@@ -10,7 +10,6 @@ const SELECTED_SONG = gql `
     }
   }
   `;
-  
 const SelectedSong = ({...data}) => (
   <Mutation mutation={ SELECTED_SONG }>
     { 
@@ -19,7 +18,6 @@ const SelectedSong = ({...data}) => (
         <select className="dropDown"  onChange={e=>{
           let title = e.target.options[e.target.selectedIndex].getAttribute('title');
           let keys = e.target.options[e.target.selectedIndex].getAttribute('keys');
-
           let keysPlayed = [];
           for (let i in keys) {
             if (keys.charAt(i) !== ',')

@@ -131,19 +131,13 @@ class PianoApp extends React.Component {
               <tr className="emptyRow"></tr>
               <tr>
                 <label>
-                  Play the song with number:               
-                  <input className="songNumber" value={this.state.dbSongNumber} onChange={(e)=>this.chosenSong(e)} />
-                </label>
-              </tr>
-              <tr>
-                <label>
                   Play a song from the dropdown list: 
                   {/* <ul>{songList}</ul> */}
                   <SongQuery onChange={(e)=>this.chosenSong(e)}/>
                 </label>
               </tr>
               <tr>
-                <SongPlayer title={this.state.chosenTitle} onClick={e=>this.chosenSong(e)}/>
+                <SongPlayer onClick={e=>this.chosenSong(e)}/>
               </tr>
               </table>
             </div>
