@@ -71,13 +71,7 @@ class PianoApp extends React.Component {
     console.log(this.recording.keys);
 
   }
-  resetKeysClick() {
-    console.log('within reset');
-    // this.setState(prevState => ({
-    //   keys: !prevState.keys
-    // }));
-  }
-
+ 
   recordClick() {
     this.setState(prevState => ({
       recordOn: !prevState.recordOn
