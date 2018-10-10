@@ -21,7 +21,7 @@ const SONG_Query = gql`
   }
 `;
 
-const SongList = (props) => (
+const SongList = () => (
   <Query query={SONG_Query}>
     {({ loading, error, data }) => {
       if (loading) return "Loading...";
@@ -32,13 +32,5 @@ const SongList = (props) => (
     }}
   </Query>
 );
-{/* <select className="dropDown" name="song" onChange={props.onChange}>
-  {
-    data.songs.map(song => (
-      <option key={song.id}  value={song.title}> 
-        {song.title}
-      </option>
-  ))}
-</select> */}
 
 export default SongList;

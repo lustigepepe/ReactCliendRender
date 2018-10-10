@@ -14,6 +14,10 @@ ul {
     position: static;
 
 }
+.saveButton {
+    margin-top: 6px
+}
+
 label {
     /* align-self: auto; */
 }
@@ -52,7 +56,7 @@ table {
 }
 
 .emptyRow {
-    height: 2em;
+    height: 1.6em;
 
 }
 

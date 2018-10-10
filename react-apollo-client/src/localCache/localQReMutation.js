@@ -33,7 +33,6 @@ const resolvers = {
     Mutation: {
         addSong: (_, {title, keysPlayed}, { cache }) => {
           console.log(cache)
-
             const query = gql`
             query GetSongs {
               songs @client {

@@ -109,15 +109,15 @@ const ExchangeRates = () => (
 
 
 
-const query = gql`
-query {
-  songs @client {
-    id
-    title
-    keysPlayed
-  }
-}
-`;
+// const query = gql`
+// query {
+//   songs @client {
+//     id
+//     title
+//     keysPlayed
+//   }
+// }
+// `;
 
 const id = `SongItem:0`;
 // let i = 0;
@@ -130,6 +130,8 @@ const id = `SongItem:0`;
     id
   }
 `;
+
+
 // console.log(cache);
 // const backData = client.readFragment({ fragment, id});
 // console.log(backData); 

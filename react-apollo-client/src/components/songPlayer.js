@@ -16,14 +16,12 @@ const PLAY_QUERY = gql`
 const SongPlayer = (audio) => (
   <Query query={PLAY_QUERY} >
     {({ loading, error, data }) => {
-      console.log(data.selectedSong);
       if (loading) return null;
       if (error) return `Error!: ${error}`;
       let noData = true;
       if(typeof data.selectedSong !== "object")
           noData = false;
-      
-      // main player function set with play button
+      // main player function set with the play button
       let playIn;
       //
       return (
@@ -35,6 +33,8 @@ const SongPlayer = (audio) => (
                   alert("You have to select a song before");
                   return;
                 }
+                console.log('Songplayer');
+                console.log(data.selectedSong.keysPlayed);
                 var i = 1;
                 audio[data.selectedSong.keysPlayed[0]].play();
                 function play () {
@@ -64,6 +64,5 @@ const SongPlayer = (audio) => (
     }}
   </Query>
 );
-
 
 export default SongPlayer;
