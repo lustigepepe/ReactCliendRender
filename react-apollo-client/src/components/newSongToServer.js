@@ -15,6 +15,7 @@ const UPDATE_SONG = gql`
 
 const NewSongToServer = ({...recording}) => {
   let input;
+  let mistake = false;
   return (
     <Mutation mutation={UPDATE_SONG}>
       {(updateSong) => (
@@ -22,14 +23,26 @@ const NewSongToServer = ({...recording}) => {
           <form
             onSubmit={e => {
               e.preventDefault();
-              // console.log(recording.keys);
               console.log('keys');
-              if(input.value === "")
+              if(input.value.length < 1) {
                 alert("Please choose a song name");
-              if(typeof recording.keys === 'undefined' && recording.keys.length < 1)
+                mistake = true;
+              }
+              
+              console.log(recording.keys.length);
+              if(recording.keys.length < 1) {
+                alert("Please start recording");
+                mistake = true;
+              }  
+              if(recording.isRecording) {
                 alert("Please stop recording");
-              updateSong({ variables: { title: input.value, keysPlayed: recording.keys } });
-              input.value = "";
+                mistake = true;
+              }
+              if(!mistake) {
+                updateSong({ variables: { title: input.value, keysPlayed: recording.keys } });
+                input.value = "";
+                mistake = false;
+              }
             }}
           >
             <label>

@@ -8,6 +8,8 @@ import SongPlayer from './components/songPlayer';
 // import {SongList, SongPlayer } from './graphql/querys.js';
 import { withApollo } from 'react-apollo';
 import './pianoApp.css';
+import Test from './components/test';
+
 import NewSongToServer from './components/newSongToServer';
 
 
@@ -60,10 +62,15 @@ class PianoApp extends React.Component {
       chosenTitle: null,
       recordOn: true,
     };
-    this.recording = {keys:[]};
+    this.recording = {isRecording: true, keys:[]};
     this.audioListKeys = createAudioList();
   }
   
+  // componentDidMount() {
+  //   this.props.subscribeToNewSongs();
+  // }
+
+
   handleKeyClick(i) {
     this.audioListKeys[--i].play();
     if(!this.state.recordOn) 
@@ -76,6 +83,8 @@ class PianoApp extends React.Component {
     this.setState(prevState => ({
       recordOn: !prevState.recordOn
     }));
+    this.recording.isRecording = this.state.recordOn;
+
   }
 
   render() {
@@ -111,6 +120,7 @@ class PianoApp extends React.Component {
                   <SongPlayer {...this.audioListKeys}/>
                 </tr>
               </table>
+              <Test/>
             </div>
     );
   }
