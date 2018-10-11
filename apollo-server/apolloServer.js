@@ -1,5 +1,12 @@
-const {ApolloServer, gql} = require('apollo-server');
+const {gql} = require('apollo-server');
 const { find, filter } = require('lodash');
+
+const http = require('http');
+const { ApolloServer } = require('apollo-server-express');
+const express = require('express');
+
+
+
 
 const songs = [
     {
@@ -81,10 +88,17 @@ const resolvers = {
     }
 }
 
-const server = new ApolloServer({typeDefs, resolvers});
 
-server
-    .listen()
-    .then(({url}) => {
-        console.log(`Apollo server running: ${url}`);
-    });
+const PORT = 4000;
+const app = express();
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.applyMiddleware({app})
+
+const httpServer = http.createServer(app);
+server.installSubscriptionHandlers(httpServer);
+
+httpServer.listen(PORT, () => {
+  console.log(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
+  console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`)
+})
