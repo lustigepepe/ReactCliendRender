@@ -28,7 +28,6 @@ const NewSongToServer = ({...recording}) => {
                 alert("Please choose a song name");
                 mistake = true;
               }
-              
               console.log(recording.keys.length);
               if(recording.keys.length < 1) {
                 alert("Please start recording");
@@ -39,6 +38,7 @@ const NewSongToServer = ({...recording}) => {
                 mistake = true;
               }
               if(!mistake) {
+                console.log('wrote mutation');
                 updateSong({ variables: { title: input.value, keysPlayed: recording.keys } });
                 input.value = "";
                 mistake = false;

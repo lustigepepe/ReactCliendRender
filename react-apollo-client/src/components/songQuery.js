@@ -33,30 +33,30 @@ const SONG_SUBSCRIPTION = gql`
 
 const SongList = () => (
   <Query query={SONG_Query}>
-    {({ subscribeToMore,loading, error, data }) => {
+    {({ loading, error, data }) => {
                     console.log('updateQuery');
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       return (
          <SelectedSong key={data.id} {...data} 
-              subscribeToNewSongs={() => 
-                subscribeToMore({
-                  document: SONG_SUBSCRIPTION,
-                  updateQuery: (prev, { subscriptionData }) => {
-                    if (!subscriptionData.data) return prev;
-                    const newFeedItem = subscriptionData.data.songAdded;
-                    return Object.assign({}, prev, {
-                      entry: {
-                        comments: [newFeedItem, ...prev.entry.comments]
-                      }
-                    });
-                  }
-                })
-            }
          />
       );
     }}
   </Query>
 );
+// subscribeToNewSongs={() => 
+//   subscribeToMore({
+//     document: SONG_SUBSCRIPTION,
+//     updateQuery: (prev, { subscriptionData }) => {
+//       if (!subscriptionData.data) return prev;
+//       const newFeedItem = subscriptionData.data.songAdded;
+//       return Object.assign({}, prev, {
+//         entry: {
+//           comments: [newFeedItem, ...prev.entry.comments]
+//         }
+//       });
+//     }
+//   })
+// }
 
 export default SongList;
