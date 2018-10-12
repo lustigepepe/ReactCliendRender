@@ -116,9 +116,6 @@ class PianoApp extends React.Component {
               <div className="keyBoardGrid">
                 <KeyBoard onClick={i => this.handleKeyClick(i)}/>
               </div>
-              <div>
-              <component/>
-              </div>
               <table>
                 <tr>
                 <label>
