@@ -4,7 +4,10 @@ const { find, filter } = require('lodash');
 const http = require('http');
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
+const { PubSub } = require('apollo-server');
 
+const pubsub = new PubSub();
+const POST_ADDED = 'POST_ADDED';
 
 
 
@@ -12,19 +15,19 @@ const songs = [
     {
         id: 1,
         title: 'Some song title',
-        keysPlayed: ['C', 'D', 'E']
+        keysPlayed: [0, 3, 5]
     },
     {
         id: 2,
         title: 'Next ONe',
-        keysPlayed: ['C', 'D', 'E']
+        keysPlayed: [0, 3, 5]
     }
 ];
 const song = 
     {
         id: 1,
         title: 'What\'a thing man',
-        keysPlayed: ['C', 'D', 'E']
+        keysPlayed: [0, 3, 5]
     };
 
 // example data
@@ -39,7 +42,7 @@ const typeDefs = gql `
     type Song {
         id: ID!
         title: String
-        keysPlayed: [String]
+        keysPlayed: [Int]
     }
 
     type Author {
@@ -58,7 +61,10 @@ const typeDefs = gql `
     }
 
     type Mutation {
-        addSong(title: String, keysPlayed: [String]): Song
+        updateSong(title: String, keysPlayed: [Int]): Song
+    }
+    type Subscription {
+        songAdded: Song
     }
 `
 
@@ -75,17 +81,24 @@ const resolvers = {
         author: (_, { id }) => find(authors, {id} ),
     },
     Mutation: {
-        addSong: (_, {title, keysPlayed}) => {
+        updateSong: (_, {title, keysPlayed}) => {
             const newSong = {
                 id: songs.length + 1,
                 title,
                 keysPlayed
             };
             songs.push(newSong);
+            pubsub.publish(POST_ADDED, { songAdded: newSong });
 
             return newSong;
         }
+    },
+    Subscription: {
+        songAdded: {
+          subscribe: () => pubsub.asyncIterator([POST_ADDED]),
+        },
     }
+
 }
 
 
