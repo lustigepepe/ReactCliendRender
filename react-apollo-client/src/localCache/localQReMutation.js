@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 
 let Id = 0;
 
+
 const typeDefs = gql `
     type Song {
         id: ID!
@@ -13,7 +14,7 @@ const typeDefs = gql `
       id: String
       title: String
       keysPlayed: [Int]
-  }
+    }
 
     type Query {
       songs: [Song]
@@ -71,41 +72,8 @@ const resolvers = {
           cache.writeData({ data });
           return playSong;
         }
-        
-        
-        // selectedSong: (_, { iD }, { cache }) => {
-          
-        // selectedSong: (_, variables, { cache }) => {
-        //   // const id = `SongItem:${iD}`;
-        //   const id = `Song:${variables.id}`;
-        //   console.log(id);
-        //   const query = gql`
-        //   query GetSongs {
-        //     songs @client {
-        //       id
-        //       title
-        //       keysPlayed
-        //       selected
-        //     }
-        //   }`;
-
-        //   const previous = cache.readQuery({ query });
-        //   console.log(previous);
-        //     const fragment = gql`
-        //       fragment completeTodo on SongItem {
-        //         selected
-        //         id
-        //       }
-        //     `;
-        //   const fragCache = cache.readFragment({ fragment, id });
-        //   const data = { ...fragCache, selected: !fragCache.selected };
-        //   console.log(data);
-        //   cache.writeData({ id, data });
-
-        //   return null;
-        // }
     }
 }
 
+export { typeDefs, resolvers };
 
-export {typeDefs, resolvers}

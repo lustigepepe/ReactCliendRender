@@ -19,6 +19,17 @@ function Square(props) {
   );
 }
 
+
+const SONG_SUBSCRIPTION = gql`
+  subscription songAdded {
+    songAdded {
+      id,
+      title,
+      keysPlayed
+    }
+  }
+`;
+
 class KeyBoard extends React.Component {
  
   drawKey(i) {
@@ -67,7 +78,21 @@ class PianoApp extends React.Component {
   }
   
   // componentDidMount() {
-  //   this.props.subscribeToNewSongs();
+    // this.props.subscribeToNewSongs();
+    // console.log(this.props.data);
+    // this.props.data.subscribeToMore({
+    //   document: SONG_SUBSCRIPTION,
+  
+    //   updateQuery(prev, { subscriptionData }) {
+    //     const reactiveEvent = subscriptionData.data.comments;
+    //     const newStore = Object.assign({}, prev, {
+    //     });
+
+    //     // I checked the form of the newStore being returned, it's all good.
+    //     return newStore;
+    //   },
+    // });  
+  
   // }
 
 

@@ -20,6 +20,7 @@ const SONG_Query = gql`
     }
   }
 `;
+
 const SONG_SUBSCRIPTION = gql`
   subscription songAdded {
     songAdded {
@@ -30,20 +31,36 @@ const SONG_SUBSCRIPTION = gql`
   }
 `;
 
-
 const SongList = () => (
   <Query query={SONG_Query}>
-    {({ loading, error, data }) => {
+    {({ loading, error, data, subscribeToMore }) => {
                     console.log('updateQuery');
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       return (
-         <SelectedSong key={data.id} {...data} 
-         />
+        <SelectedSong key={data.id} {...data}
+
+          subscribeToNewSongs={() =>
+            subscribeToMore({
+              document: SONG_SUBSCRIPTION,
+              updateQuery: (prev, { subscriptionData }) => {
+                if (!subscriptionData.data) return prev;
+                const newSongItem = subscriptionData.data.commentAdded;
+
+                return Object.assign({}, prev, {
+                  entry: {
+                    comments: [newSongItem, ...prev.entry.comments]
+                  }
+                });
+              }
+            })
+          }
+        />
       );
     }}
   </Query>
 );
+
 // subscribeToNewSongs={() => 
 //   subscribeToMore({
 //     document: SONG_SUBSCRIPTION,
