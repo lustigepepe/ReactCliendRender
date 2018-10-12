@@ -68,10 +68,7 @@ class PianoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chosenTitle: null,
-      keysPlayed: null,
-      chosenTitle: null,
-      recordOn: true,
+      recordOn: true
     };
     this.recording = {isRecording: true, keys:[]};
     this.audioListKeys = createAudioList();
