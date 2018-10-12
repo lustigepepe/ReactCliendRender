@@ -77,8 +77,8 @@ class PianoApp extends React.Component {
     this.audioListKeys = createAudioList();
   }
   
-  componentDidMount() {
-    this.props.subscribeToNewSongs;
+  // componentDidMount() {
+  //   this.props.subscribeToNewSongs();
     // console.log(this.props.data);
     // this.props.data.subscribeToMore({
       // document: SONG_SUBSCRIPTION,
@@ -93,7 +93,7 @@ class PianoApp extends React.Component {
       // },
     // });  
   
-  }
+  // }
 
 
   handleKeyClick(i) {
