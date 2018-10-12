@@ -23,12 +23,10 @@ const NewSongToServer = ({...recording}) => {
           <form
             onSubmit={e => {
               e.preventDefault();
-              console.log('keys');
               if(input.value.length < 1) {
                 alert("Please choose a song name");
                 mistake = true;
               }
-              console.log(recording.keys.length);
               if(recording.keys.length < 1) {
                 alert("Please start recording");
                 mistake = true;

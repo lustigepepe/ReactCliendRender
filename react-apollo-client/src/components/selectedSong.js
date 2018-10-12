@@ -19,7 +19,6 @@ const SelectedSong = ({...data}) => (
           <select className="dropDown"  onChange={e=>{
             let title = e.target.options[e.target.selectedIndex].getAttribute('title');
             let keys = e.target.options[e.target.selectedIndex].getAttribute('keys');
-            // let keys = "ab1,b.Cb";
             let keysPlayed = [];
             let temp = '';
             for (let i of keys) {
