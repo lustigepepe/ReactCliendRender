@@ -1,13 +1,13 @@
 Go to folder apollo-server
 
 I'm still working on it... <br />
-#run 
+#run  <br />
 /yarn install
 /yarn start
 
 change to react apollo-client
 
-#run
+#run  <br />
 /yarn install 
 /yarn build
 /yarn start
