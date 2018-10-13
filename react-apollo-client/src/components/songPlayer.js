@@ -38,6 +38,8 @@ const SongPlayer = (audio) => (
                 var i = 1;
                 audio[data.selectedSong.keysPlayed[0]].play();
                 function play () {
+                  if (!(data.selectedSong.keysPlayed.length > 1))
+                    return;
                   audio[data.selectedSong.keysPlayed[i]].play();
                   i++;
                   if(! (i < data.selectedSong.keysPlayed.length)) {
