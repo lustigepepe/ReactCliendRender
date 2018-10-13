@@ -1,8 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import gql from 'graphql-tag';
 import {Subscription} from 'react-apollo';
-import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const SONG_SUBSCRIPTION = gql`
 subscription songAdded {

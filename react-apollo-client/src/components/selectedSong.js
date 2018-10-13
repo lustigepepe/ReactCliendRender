@@ -11,32 +11,16 @@ const SELECTED_SONG = gql `
   }
   `;
 
+
+
 class SelectedSong extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  // componentDidMount() {
-  //   this.props.subscribeToNewSongs();
-  //   console.log(this.props.data);
-  //   this.props.data.subscribeToMore({
-  //     document: SONG_SUBSCRIPTION,
-  
-  //     updateQuery(prev, { subscriptionData }) {
-  //       const reactiveEvent = subscriptionData.data.comments;
-  //       const newStore = Object.assign({}, prev, {
-  //       });
-
-  //       // I checked the form of the newStore being returned, it's all good.
-  //       return newStore;
-  //     },
-  //   });  
-  
-  // }
-
-
-
-
+  componentDidMount() {
+    this.props.subscribeToNewSongs();
+  }
 
   render() {
     return (

@@ -5,20 +5,15 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import SongQuery from './components/songQuery';
 import SongPlayer from './components/songPlayer';
-// import {SongList, SongPlayer } from './graphql/querys.js';
-import { withApollo } from 'react-apollo';
 import './pianoApp.css';
 import Test from './components/test';
-
 import NewSongToServer from './components/newSongToServer';
-
 
 function Square(props) {
   return ( < button className = { props.className } onClick = { props.onClick } > { props.value } <
     /button>
   );
 }
-
 
 const SONG_SUBSCRIPTION = gql`
   subscription songAdded {
