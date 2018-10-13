@@ -37,7 +37,7 @@ const SongList = () => (
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
       return (
-        <SelectedSong key={data.id} {...data}
+        <SelectedSong key={data.id} data={data}
 
           subscribeToNewSongs={() =>
             subscribeToMore({

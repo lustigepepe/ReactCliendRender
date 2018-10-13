@@ -67,24 +67,6 @@ const client = new ApolloClient({
 });
 
 
-// client.subscribe();
-
-
-
-const id = `SongItem:0`;
-// let i = 0;
-// console.log('IntCOunt!!!:: '+ i);
-// if(i > 1) {
-
-  const fragment = gql`
-  fragment titleSong on SongItem {
-    title
-    id
-  }
-`;
-
-
-
 const App = () => (
   <ApolloProvider client={client}>    
     <PianoApp/>
