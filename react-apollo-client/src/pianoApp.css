@@ -29,12 +29,6 @@ label {
     margin-left: 2em 
 }
 
-.player, .buttonStop {
-    color: #6699ff;
-    font-weight: bold;
-    width: 4em;
-    height: 4em;
-}
 
 .playerTable {
     margin-top: -20px;
@@ -47,7 +41,7 @@ input {
 }
 button {
     font-size: 12px;
-
+    
 }
 
 table {
@@ -57,7 +51,7 @@ table {
 
 .emptyRow {
     height: 1.6em;
-
+    
 }
 
 .songNumber {
@@ -84,7 +78,7 @@ table {
     background: linear-gradient(top, #eee 0%, #fff 100%);
     transition-duration: 2s;
     font-size: 14px;
-
+    
 }
 
 .thinSquare {
@@ -100,7 +94,7 @@ table {
     background: linear-gradient(45deg, #222 0%, #555 100%);
     transition-duration: 2s;
     font-size: 14px;
-
+    
 }
 .square:active {
     background: linear-gradient(45deg, #dc143c 0%, #8b0000 100%);
@@ -120,4 +114,11 @@ table {
 }
 .kbd-navigation .square:focus {
     background: #ddd;
+}
+
+.player, .buttonStop {
+    color: #6699ff;
+    font-weight: bold;
+    width: 4em;
+    height: 4em;
 }

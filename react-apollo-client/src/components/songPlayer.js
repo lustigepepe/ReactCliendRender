@@ -57,7 +57,9 @@ const SongPlayer = (audio) => (
                   return;
                   clearInterval(playIn);
               }}>
+                <span>
                 STOP
+                </span>
               </button>
             </td>
           </tr>
