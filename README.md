@@ -1,3 +1,5 @@
+# Works only with chrome and safari - browser
+
 # Go to folder apollo-server
 
 **#run**  <br />
