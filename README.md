@@ -1,5 +1,5 @@
 # Works only with chrome and safari - browser
-# because absolute is not working with firefox and react 
+# because position: absolute is not working with firefox and react 
 # I'm still working on it
 
 # Go to folder apollo-server
