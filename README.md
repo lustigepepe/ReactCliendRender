@@ -1,6 +1,6 @@
 ###### Works only with chrome and safari - browser
 ###### react don't support z-position and position: absolute is not working with firefox and react 
-###### I'm still working on it
+###### It would be needed to set all black keys manually, so I decided for that project, not to support firefox
 
 # Go to folder apollo-server
 
