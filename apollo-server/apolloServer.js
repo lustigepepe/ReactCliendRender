@@ -61,7 +61,7 @@ const typeDefs = gql `
     }
 
     type Mutation {
-        updateSong(title: String, keysPlayed: [Int]): Song
+        newSong(title: String, keysPlayed: [Int]): Song
     }
     type Subscription {
         songAdded: Song
@@ -81,16 +81,16 @@ const resolvers = {
         author: (_, { id }) => find(authors, {id} ),
     },
     Mutation: {
-        updateSong: (_, {title, keysPlayed}) => {
-            const newSong = {
+        newSong: (_, {title, keysPlayed}) => {
+            const new_Song = {
                 id: songs.length + 1,
                 title,
                 keysPlayed
             };
-            songs.push(newSong);
-            pubsub.publish(POST_ADDED, { songAdded: newSong });
+            songs.push(new_Song);
+            pubsub.publish(POST_ADDED, { songAdded: new_Song });
 
-            return newSong;
+            return new_Song;
         }
     },
     Subscription: {
