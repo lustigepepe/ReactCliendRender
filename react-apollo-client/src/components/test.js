@@ -3,13 +3,13 @@ import gql from 'graphql-tag';
 import {Subscription} from 'react-apollo';
 
 const SONG_SUBSCRIPTION = gql`
-subscription songAdded {
-  songAdded {
-    id,
-    title,
-    keysPlayed
-  }
-}
+    subscription songAdded {
+        songAdded {
+            id,
+            title,
+            keysPlayed
+        }
+    }
 `;
 
 
@@ -18,7 +18,6 @@ export default class Test extends React.PureComponent {
         return (
             <Subscription subscription={SONG_SUBSCRIPTION}>
                 {data => {
-                    console.log(data);
                     return null;
                 }}
             </Subscription>
