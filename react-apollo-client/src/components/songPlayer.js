@@ -30,7 +30,7 @@ const SongPlayer = (audio) => (
             <td>
               <button className='player' onClick={(e)=>{
                 if (!noData) {
-                  alert("You have to select a song before");
+                  alert("Please select a song");
                   return;
                 }
                 console.log('Songplayer');

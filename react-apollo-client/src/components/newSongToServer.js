@@ -31,12 +31,11 @@ const NewSongToServer = ({...recording}) => {
                 alert("Please start recording");
                 mistake = true;
               }  
-              if(recording.isRecording) {
-                alert("Please stop recording");
-                mistake = true;
-              }
+              // if(recording.isRecording) {
+              //   alert("Please stop recording");
+              //   mistake = true;
+              // }
               if(!mistake) {
-                console.log('wrote mutation');
                 updateSong({ variables: { title: input.value, keysPlayed: recording.keys } });
                 input.value = "";
                 mistake = false;
@@ -51,7 +50,7 @@ const NewSongToServer = ({...recording}) => {
                 }}
               />
             </label>
-              <button className="saveButton">SAVE</button>
+              <button className="saveButton" onClick = { recording.onClick } >SAVE</button>
           </form>
         </div>
       )}

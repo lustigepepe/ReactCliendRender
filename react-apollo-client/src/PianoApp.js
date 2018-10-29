@@ -15,16 +15,6 @@ function Square(props) {
   );
 }
 
-const SONG_SUBSCRIPTION = gql`
-  subscription songAdded {
-    songAdded {
-      id,
-      title,
-      keysPlayed
-    }
-  }
-`;
-
 class KeyBoard extends React.Component {
  
   drawKey(i) {
@@ -54,7 +44,7 @@ class KeyBoard extends React.Component {
     var rows = [];
     for (let i = 1; i < 13; ++i)
       rows.push(this.renderKey(i));
-    return ( <div className = "board-row" > { rows } </div>
+      return ( <div className = "board-row" > { rows } </div>
     );
   }
 }
@@ -63,7 +53,7 @@ class PianoApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recordOn: true
+      recordOn: false
     };
     this.recording = {isRecording: true, keys:[]};
     this.audioListKeys = createAudioList();
@@ -71,20 +61,24 @@ class PianoApp extends React.Component {
   
   handleKeyClick(i) {
     this.audioListKeys[--i].play();
-    if(!this.state.recordOn) 
+    if(this.state.recordOn) 
       this.recording.keys.push(i);
-    console.log(this.recording.keys);
+    else
+      this.recording.keys = [];
 
   }
- 
+
+  recordSaved() {
+    this.setState({ recordOn: false });
+    console.log(this.state.recordOn);
+  }
+
   recordClick() {
     this.setState(prevState => ({
       recordOn: !prevState.recordOn
     }));
     this.recording.isRecording = this.state.recordOn;
-
   }
-
   render() {
  
     return (
@@ -97,12 +91,13 @@ class PianoApp extends React.Component {
                 <label>
                   Start record:
                   <button onClick={(e)=>this.recordClick(e)}>
-                      {this.state.recordOn ? 'ON' : 'OFF'}
+                      {this.state.recordOn ? 'RUNNING' : 'ON'}
+                      {/* ON */}
                   </button>
                 </label>
                 </tr>
                 <tr>
-                  <NewSongToServer {...this.recording}/>   
+                  <NewSongToServer {...this.recording} onClick={(e)=>this.recordSaved(e)}/>   
                 </tr>
                 <tr className="emptyRow"></tr>
                 <tr>
