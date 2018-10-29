@@ -5,7 +5,7 @@ import SelectedSong from './selectedSong'
 
 import '../pianoApp.css';
 
-const SONG_Query = gql`
+const SONGS_Query = gql`
   {
     songs{
       id,
@@ -26,7 +26,7 @@ const SONG_SUBSCRIPTION = gql`
 `;
 
 const SongList = () => (
-  <Query query={SONG_Query}>
+  <Query query={SONGS_Query}>
     {({ loading, error, data, subscribeToMore }) => {
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
