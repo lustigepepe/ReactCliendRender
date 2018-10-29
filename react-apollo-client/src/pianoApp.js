@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import createAudioList from './helper/prepareAudio';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
 import SongQuery from './components/songQuery';
 import SongPlayer from './components/songPlayer';
 import './pianoApp.css';
@@ -35,7 +32,7 @@ class KeyBoard extends React.Component {
   }
 
   renderKey(i) {
-    return ( <Square className = { this.drawKey(i) } 
+    return ( <Square className = { this.drawKey(i)} key = {i} 
               onClick = {() => this.props.onClick(i)} 
             />
     );
@@ -44,7 +41,7 @@ class KeyBoard extends React.Component {
     var rows = [];
     for (let i = 1; i < 13; ++i)
       rows.push(this.renderKey(i));
-      return ( <div className = "board-row" > { rows } </div>
+      return ( <div className = "board-row"> { rows } </div>
     );
   }
 }
@@ -87,28 +84,37 @@ class PianoApp extends React.Component {
                 <KeyBoard onClick={i => this.handleKeyClick(i)}/>
               </div>
               <table>
+              <tbody>
                 <tr>
-                <label>
-                  Start record:
-                  <button onClick={(e)=>this.recordClick(e)}>
-                      {this.state.recordOn ? 'RUNNING' : 'ON'}
-                      {/* ON */}
-                  </button>
-                </label>
+                  <td>
+                  <label>
+                    Start record:
+                    <button onClick={(e)=>this.recordClick(e)}>
+                        {this.state.recordOn ? 'RUNNING' : 'ON'}
+                    </button>
+                  </label>
+                  </td>
                 </tr>
                 <tr>
-                  <NewSongToServer {...this.recording} onClick={(e)=>this.recordSaved(e)}/>   
+                  <td>
+                    <NewSongToServer {...this.recording} onClick={(e)=>this.recordSaved(e)}/>   
+                  </td>
                 </tr>
                 <tr className="emptyRow"></tr>
                 <tr>
-                  <label>
-                    Play a song from the dropdown list: 
-                    <SongQuery/>
-                  </label>
+                  <td>
+                    <label>
+                      Play a song from the dropdown list: 
+                      <SongQuery/>
+                    </label>
+                  </td>
                 </tr>
                 <tr>
-                  <SongPlayer {...this.audioListKeys}/>
+                  <td>
+                    <SongPlayer {...this.audioListKeys}/>
+                  </td>
                 </tr>
+                </tbody>
               </table>
               <Test/>
             </div>

@@ -26,43 +26,45 @@ const SongPlayer = (audio) => (
       //
       return (
         <table className='playerTable'>
-          <tr>
-            <td>
-              <button className='player' onClick={(e)=>{
-                if (!noData) {
-                  alert("Please select a song");
-                  return;
-                }
-                console.log('Songplayer');
-                console.log(data.selectedSong.keysPlayed);
-                var i = 1;
-                audio[data.selectedSong.keysPlayed[0]].play();
-                function play () {
-                  if (!(data.selectedSong.keysPlayed.length > 1))
+          <tbody>               
+            <tr>
+              <td>
+                <button className='player' onClick={(e)=>{
+                  if (!noData) {
+                    alert("Please select a song");
                     return;
-                  audio[data.selectedSong.keysPlayed[i]].play();
-                  i++;
-                  if(! (i < data.selectedSong.keysPlayed.length)) {
-                    clearInterval(playIn);
                   }
-                }
-                playIn = setInterval(play, 1000);
-              }}>
-                PLAY
-              </button>
-            </td>
-            <td>
-              <button className='buttonStop' onClick={(e)=>{
-                if (!noData) 
-                  return;
-                  clearInterval(playIn);
-              }}>
-                <span>
-                STOP
-                </span>
-              </button>
-            </td>
-          </tr>
+                  console.log('Songplayer');
+                  console.log(data.selectedSong.keysPlayed);
+                  var i = 1;
+                  audio[data.selectedSong.keysPlayed[0]].play();
+                  function play () {
+                    if (!(data.selectedSong.keysPlayed.length > 1))
+                      return;
+                    audio[data.selectedSong.keysPlayed[i]].play();
+                    i++;
+                    if(! (i < data.selectedSong.keysPlayed.length)) {
+                      clearInterval(playIn);
+                    }
+                  }
+                  playIn = setInterval(play, 1000);
+                }}>
+                  PLAY
+                </button>
+              </td>
+              <td>
+                <button className='buttonStop' onClick={(e)=>{
+                  if (!noData) 
+                    return;
+                    clearInterval(playIn);
+                }}>
+                  <span>
+                  STOP
+                  </span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       );
     }}

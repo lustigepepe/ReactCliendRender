@@ -58,7 +58,7 @@ const resolvers = {
           return newSong;
         },
         playSong: (_, {title, keysPlayed}, { cache }) => {
-          const playSong = {
+          const new_Song = {
             id: 'Active',
             title,
             keysPlayed,
@@ -67,10 +67,10 @@ const resolvers = {
           // console.log("cache")
           // previous.songs = [];
           const data = {
-            selectedSong: playSong
+            selectedSong: new_Song
           };
           cache.writeData({ data });
-          return playSong;
+          return new_Song;
         }
     }
 }

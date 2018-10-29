@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {render} from 'react-dom';
+// import {render} from 'react-dom';
 import PianoApp from './pianoApp';
 import registerServiceWorker from './registerServiceWorker';
 import { typeDefs, resolvers } from './localCache/localQReMutation';
-import { ApolloProvider, Query } from 'react-apollo';
-import gql from "graphql-tag";
+import { ApolloProvider } from 'react-apollo';
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache, defaultDataIdFromObject } from 'apollo-cache-inmemory';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { withClientState } from 'apollo-link-state';
 import { ApolloLink } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';

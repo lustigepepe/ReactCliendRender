@@ -14,9 +14,6 @@ const SELECTED_SONG = gql `
 
 
 class SelectedSong extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     this.props.subscribeToNewSongs();
@@ -47,7 +44,7 @@ class SelectedSong extends React.Component {
               }}>
                 {
                   this.props.data.songs.map(song => (
-                    <option keys={song.keysPlayed} title={song.title} id={song.id}
+                    <option key={song.id} keys={song.keysPlayed} title={song.title} id={song.id}
                     > 
                       {song.title}
                     </option>

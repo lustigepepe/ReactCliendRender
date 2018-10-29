@@ -3,9 +3,9 @@ import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
 import '../pianoApp.css';
 
-const UPDATE_SONG = gql`
-  mutation updateSong($title: String!, $keysPlayed: [Int]) {
-    updateSong(title: $title, keysPlayed: $keysPlayed) {
+const New_SONG = gql`
+  mutation newSong($title: String!, $keysPlayed: [Int]) {
+    newSong(title: $title, keysPlayed: $keysPlayed) {
       id
       title
       keysPlayed
@@ -17,8 +17,8 @@ const NewSongToServer = ({...recording}) => {
   let input;
   let mistake = false;
   return (
-    <Mutation mutation={UPDATE_SONG}>
-      {(updateSong) => (
+    <Mutation mutation={New_SONG}>
+      {(newSong) => (
         <div>
           <form
             onSubmit={e => {
@@ -36,7 +36,7 @@ const NewSongToServer = ({...recording}) => {
               //   mistake = true;
               // }
               if(!mistake) {
-                updateSong({ variables: { title: input.value, keysPlayed: recording.keys } });
+                newSong({ variables: { title: input.value, keysPlayed: recording.keys } });
                 input.value = "";
                 mistake = false;
               }

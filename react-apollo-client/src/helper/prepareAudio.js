@@ -6,7 +6,6 @@ function loadSounds(octave = 1) {
     let resultFiles = [];
     let re = /.*1.*/;
   
-    var files = [];
     let fileMap;
     // var readDir = require('recursive-readdir-synchronous');
     try {
@@ -19,8 +18,7 @@ function loadSounds(octave = 1) {
     } catch (err) {
       console.log('Path to sounds does not exist: ' + err.errno);
     }
-    let count = 0,
-      pos = 0;
+    let count = 0;
     allFiles.forEach(file => {
       let isNotEmpty = file.match(re);
       if (isNotEmpty !== null && count < 13) {
@@ -86,8 +84,8 @@ function loadSounds(octave = 1) {
   
   function importAllData(r) {
     let fileMap = {};
-    r.keys().map((item, index) => {
-      fileMap[item.replace('./', '')] = r(item);
+    r.keys().map((item, index) => { return (
+      fileMap[item.replace('./', '')] = r(item));
     });
     return fileMap;
   }

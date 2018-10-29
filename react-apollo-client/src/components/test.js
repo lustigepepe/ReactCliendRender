@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import {Subscription} from 'react-apollo';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 
 const SONG_SUBSCRIPTION = gql`
 subscription songAdded {
@@ -13,9 +12,6 @@ subscription songAdded {
 }
 `;
 
-const cache = new InMemoryCache({
-
-});
 
 export default class Test extends React.PureComponent {
     render() {
