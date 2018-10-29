@@ -25,7 +25,7 @@ const typeDefs = gql `
 
     type Mutation {
         addSong(title: String, keysPlayed: [Int]): Song,
-        playSong(title: String, keysPlayed: [Int]):sSong
+        setPlaySong(title: String, keysPlayed: [Int]):sSong
     }
     `
 ;
@@ -57,7 +57,7 @@ const resolvers = {
           cache.writeData({ data });
           return newSong;
         },
-        playSong: (_, {title, keysPlayed}, { cache }) => {
+        setPlaySong: (_, {title, keysPlayed}, { cache }) => {
           const new_Song = {
             id: 'Active',
             title,

@@ -3,9 +3,9 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import '../pianoApp.css';
 
-const SELECTED_SONG = gql `
-  mutation playSong($title: String!, $keysPlayed: [String]) {
-    playSong(title: $title, keysPlayed: $keysPlayed) @client {
+const PLAY_SONG = gql `
+  mutation setPlaySong($title: String!, $keysPlayed: [String]) {
+    setPlaySong(title: $title, keysPlayed: $keysPlayed) @client {
       id
     }
   }
@@ -22,9 +22,9 @@ class PlaySong extends React.Component {
   render() {
     return (
       // const playSong = ({...data}) => (
-        <Mutation mutation={ SELECTED_SONG }>
+        <Mutation mutation={ PLAY_SONG }>
           { 
-            playSong => {
+            setPlaySong => {
             return (
               <select className="dropDown"  onChange={e=>{
                 let title = e.target.options[e.target.selectedIndex].getAttribute('title');
@@ -40,7 +40,7 @@ class PlaySong extends React.Component {
                   }
                 }
                 keysPlayed.push(temp);
-                playSong({ variables: { title: title, keysPlayed: keysPlayed } });
+                setPlaySong({ variables: { title: title, keysPlayed: keysPlayed } });
               }}>
                 {
                   this.props.data.songs.map(song => (

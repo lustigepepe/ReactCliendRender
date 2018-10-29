@@ -5,8 +5,9 @@ import '../pianoApp.css'
 
 
 const GET_PLAY_SONG = gql`
-  query PlaySong {
+  query GetPlaySong {
     playSong @client {
+      id
       title
       keysPlayed
     }
