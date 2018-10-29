@@ -13,7 +13,7 @@ const SELECTED_SONG = gql `
 
 
 
-class SelectedSong extends React.Component {
+class PlaySong extends React.Component {
 
   componentDidMount() {
     this.props.subscribeToNewSongs();
@@ -21,7 +21,7 @@ class SelectedSong extends React.Component {
 
   render() {
     return (
-      // const SelectedSong = ({...data}) => (
+      // const playSong = ({...data}) => (
         <Mutation mutation={ SELECTED_SONG }>
           { 
             playSong => {
@@ -59,4 +59,4 @@ class SelectedSong extends React.Component {
     );
   }
 }
-export default SelectedSong;
+export default PlaySong;

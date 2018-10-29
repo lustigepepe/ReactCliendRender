@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import SelectedSong from './selectedSong'
+import PlaySong from './playSong'
 
 import '../pianoApp.css';
 
@@ -32,7 +32,7 @@ const SongList = () => (
       if (error) return `Error! ${error.message}`;
       console.log(data);
       return (
-        <SelectedSong key={data.id} data={data}
+        <PlaySong key={data.id} data={data}
           subscribeToNewSongs={() =>
             subscribeToMore({
               document: SONG_SUBSCRIPTION,

@@ -5,8 +5,8 @@ import '../pianoApp.css'
 
 
 const GET_PLAY_SONG = gql`
-  query GetSong {
-    getPlaySong @client {
+  query PlaySong {
+    playSong @client {
       title
       keysPlayed
     }
@@ -19,7 +19,7 @@ const SongPlayer = (audio) => (
       if (loading) return null;
       if (error) return `Error!: ${error}`;
       let noData = true;
-      if(typeof data.getPlaySong !== "object")
+      if(typeof data.playSong !== "object")
           noData = false;
       // main player function set with the play button
       let playIn;
@@ -35,15 +35,15 @@ const SongPlayer = (audio) => (
                     return;
                   }
                   console.log('Songplayer');
-                  console.log(data.getPlaySong.keysPlayed);
+                  console.log(data.playSong.keysPlayed);
                   var i = 1;
-                  audio[data.getPlaySong.keysPlayed[0]].play();
+                  audio[data.playSong.keysPlayed[0]].play();
                   function play () {
-                    if (!(data.getPlaySong.keysPlayed.length > 1))
+                    if (!(data.playSong.keysPlayed.length > 1))
                       return;
-                    audio[data.getPlaySong.keysPlayed[i]].play();
+                    audio[data.playSong.keysPlayed[i]].play();
                     i++;
-                    if(! (i < data.getPlaySong.keysPlayed.length)) {
+                    if(! (i < data.playSong.keysPlayed.length)) {
                       clearInterval(playIn);
                     }
                   }

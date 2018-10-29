@@ -20,7 +20,7 @@ const typeDefs = gql `
       songs: [Song]
       say: String
       songById(id: Int!): Song
-      getPlaySong: sSong
+      playSong: sSong
     }
 
     type Mutation {
@@ -67,7 +67,7 @@ const resolvers = {
           // console.log("cache")
           // previous.songs = [];
           const data = {
-            getPlaySong: new_Song
+            playSong: new_Song
           };
           cache.writeData({ data });
           return new_Song;
